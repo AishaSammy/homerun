@@ -16817,6 +16817,86 @@
         "security": []
       }
     },
+    "/api/site/redirect/list": {
+      "get": {
+        "summary": "get lists of redirect urls",
+        "deprecated": false,
+        "description": "Gets the list of a non-expired Redirect matching the normalized path (leading/trailing slashes trimmed, single leading slash enforced). Returns 404 if no matching redirect exists. If the matched redirect is expired or has no new_path, returns status_code 410 with new_path null.",
+        "tags": [],
+        "parameters": [
+          {
+            "name": "path",
+            "in": "query",
+            "description": "Old path to resolve, e.g. /old-page",
+            "required": false,
+            "example": "",
+            "schema": {
+              "type": "string",
+              "nullable": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "old_path": {
+                            "type": "string"
+                          },
+                          "new_path": {
+                            "type": "string",
+                            "nullable": true
+                          },
+                          "status_code": {
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "old_path",
+                          "new_path",
+                          "status_code"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ]
+                }
+              }
+            },
+            "headers": {}
+          },
+          "404": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "No redirect found."
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
     "/api/client/cabinet/replies": {
       "get": {
         "summary": "get user replies",
