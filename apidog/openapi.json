@@ -29542,6 +29542,7 @@
                   62
                 ],
                 "is_constant_price": true,
+                "location_id": 123,
                 "subservices": [
                   {
                     "name": "Service0 in Category0 subservice 1",
