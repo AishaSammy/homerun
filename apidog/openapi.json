@@ -42024,6 +42024,122 @@
         ]
       }
     },
+    "/api/mobile/ota/downloaded": {
+      "post": {
+        "summary": "when newly downloaded",
+        "deprecated": false,
+        "description": "OTA bundle başarıyla indirildiğinde bir kez çağrılsın.\n\nversion, güncelleme cevabındaki version alanıdır. v önekiyle de gelebilir, temizliyoruz.\nBaşarılı olursa 204 döner. Versiyon bulunamazsa 404, geçersiz alanda 422 döner.\nDakikada 60 istek sınırı var. Hata alınırsa kullanıcı akışını engellemeyin, sessizce geçin.\nBu çağrıları aynı güncelleme için tekrar tekrar göndermeyin. Tekrarı backend engellemiyor, her çağrı sayıyı bir artırır.",
+        "tags": [],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "application": {
+                    "example": "onliner",
+                    "type": "string"
+                  },
+                  "platform": {
+                    "example": "android",
+                    "type": "string"
+                  },
+                  "version": {
+                    "example": "2.0.73",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "application",
+                  "platform",
+                  "version"
+                ]
+              },
+              "example": {
+                "application": "onliner",
+                "platform": "android",
+                "version": "2.0.73"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
+    "/api/mobile/ota/installed": {
+      "post": {
+        "summary": "when newly updated",
+        "deprecated": false,
+        "description": "Bundle uygulanıp yeni sürümle uygulama açıldığında bir kez çağrılsın.\n\nversion, güncelleme cevabındaki version alanıdır. v önekiyle de gelebilir, temizliyoruz.\nBaşarılı olursa 204 döner. Versiyon bulunamazsa 404, geçersiz alanda 422 döner.\nDakikada 60 istek sınırı var. Hata alınırsa kullanıcı akışını engellemeyin, sessizce geçin.\nBu çağrıları aynı güncelleme için tekrar tekrar göndermeyin. Tekrarı backend engellemiyor, her çağrı sayıyı bir artırır.",
+        "tags": [],
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "application": {
+                    "example": "onliner",
+                    "type": "string"
+                  },
+                  "platform": {
+                    "example": "android",
+                    "type": "string"
+                  },
+                  "version": {
+                    "example": "2.0.73",
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "application",
+                  "platform",
+                  "version"
+                ]
+              },
+              "example": {
+                "application": "onliner",
+                "platform": "android",
+                "version": "2.0.73"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {}
+                }
+              }
+            },
+            "headers": {}
+          }
+        },
+        "security": []
+      }
+    },
     "/api/mobile/ota/check-update": {
       "get": {
         "summary": "check for mobile app OTA update",
